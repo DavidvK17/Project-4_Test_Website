@@ -72,3 +72,31 @@ const logH1 = function(e) {
 h1.addEventListener('mouseenter', logH1);
 
 setTimeout(() => h1.removeEventListener('mouseenter', logH1), 3000);
+
+// Generate random color rgb(255,255,255)
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+console.log(randomColor());
+
+// Event Propagtation
+document.querySelector('.nav__link').addEventListener('click', function(e) {
+  e.preventDefault();
+  //   this === e.currentTarget
+  console.log('LINK', e.target, e.currentTarget);
+  this.style.background = randomColor();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function(e) {
+  //   this === e.currentTarget
+  console.log('CONTAINER', e.target, e.currentTarget);
+  this.style.background = randomColor();
+});
+
+document.querySelector('.nav').addEventListener('click', function(e) {
+  //   this === e.currentTarget
+  console.log('NAV', e.target, e.currentTarget);
+  this.style.background = randomColor();
+});
