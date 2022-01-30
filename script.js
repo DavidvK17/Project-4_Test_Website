@@ -109,9 +109,11 @@ navLinks.forEach((link, i) =>
     e.preventDefault();
     console.log(e);
     console.log(e.target);
-    console.log(e.currentTarget);
-    const sections = document.querySelectorAll(`#section--${i + 1}`);
-    console.log(sections);
-    sections[0].scrollIntoView({ behavior: 'smooth' });
+    console.log(e.currentTarget); //=this
+    // const sections = document.querySelectorAll(`#section--${i + 1}`);
+    // console.log(sections);
+    // sections[0].scrollIntoView({ behavior: 'smooth' });
+    const id = this.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   })
 );
