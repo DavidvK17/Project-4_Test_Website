@@ -56,3 +56,19 @@ btnScrollTo.addEventListener('click', function(e) {
 
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+// Types of events and Event Handlers
+const h1 = document.querySelector('h1');
+
+// 1. addeventlistener allows us to add multiple event listeners to the same event
+// 2. allows us to remove an event handler we don't need anymore
+const logH1 = function(e) {
+  console.log(e);
+  console.log(e.target);
+
+  //   h1.removeEventListener('mouseenter', logH1);
+};
+
+h1.addEventListener('mouseenter', logH1);
+
+setTimeout(() => h1.removeEventListener('mouseenter', logH1), 3000);

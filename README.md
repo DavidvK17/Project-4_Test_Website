@@ -4,6 +4,9 @@ Here I borrow the HTML and CSS from a Tutorial and focus on advanced DOM Manipul
 
 - Implementing smooth scrolling
 - Event Propagation: Bubbling and Capturing (to be implemented)
+
+* Event Delegation: Nav (to be implemented)
+
 - DOM Traversing - Tabbed Component (to be implemented)
 - Intersection Observer API (to be implemented)
 
