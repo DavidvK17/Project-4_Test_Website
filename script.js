@@ -102,18 +102,31 @@ console.log(randomColor());
 // });
 
 // Event Delegation - Smooth Page Navigation
-const navLinks = document.querySelectorAll('.nav__link');
 
-navLinks.forEach((link, i) =>
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    console.log(e);
-    console.log(e.target);
-    console.log(e.currentTarget); //=this
-    // const sections = document.querySelectorAll(`#section--${i + 1}`);
-    // console.log(sections);
-    // sections[0].scrollIntoView({ behavior: 'smooth' });
-    const id = this.getAttribute('href');
+// 1. add eventlistener to common parent element
+document.querySelector('.nav__links').addEventListener('click', function(e) {
+  e.preventDefault();
+  //   Matching strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
-  })
-);
+  }
+});
+// 1. determine what element originiated the event
+
+// const navLinks = document.querySelector('.nav__link');
+// console.log(navLinks);
+
+// navLinks.forEach((link, i) =>
+//   link.addEventListener('click', function(e) {
+//     e.preventDefault();
+//     console.log(e);
+//     console.log(e.target);
+//     console.log(e.currentTarget); //=this
+//     // const sections = document.querySelectorAll(`#section--${i + 1}`);
+//     // console.log(sections);
+//     // sections[0].scrollIntoView({ behavior: 'smooth' });
+//     const id = this.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   })
+// );
