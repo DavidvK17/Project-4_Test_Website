@@ -7,7 +7,7 @@ Here I borrow the HTML and CSS from a Tutorial and focus on advanced DOM Manipul
 
 * Event Delegation: Nav
 
-- DOM Traversing - Tabbed Component (to be implemented)
+- DOM Traversing - Tabbed Component
 - Intersection Observer API (to be implemented)
 
 * Lazy Loading Images (to be implemented)
