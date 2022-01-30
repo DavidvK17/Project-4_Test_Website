@@ -82,21 +82,36 @@ const randomColor = () =>
 console.log(randomColor());
 
 // Event Propagtation
-document.querySelector('.nav__link').addEventListener('click', function(e) {
-  e.preventDefault();
-  //   this === e.currentTarget
-  console.log('LINK', e.target, e.currentTarget);
-  this.style.background = randomColor();
-});
+// document.querySelector('.nav__link').addEventListener('click', function(e) {
+//   e.preventDefault();
+//   //   this === e.currentTarget
+//   console.log('LINK', e.target, e.currentTarget);
+//   this.style.background = randomColor();
+// });
 
-document.querySelector('.nav__links').addEventListener('click', function(e) {
-  //   this === e.currentTarget
-  console.log('CONTAINER', e.target, e.currentTarget);
-  this.style.background = randomColor();
-});
+// document.querySelector('.nav__links').addEventListener('click', function(e) {
+//   //   this === e.currentTarget
+//   console.log('CONTAINER', e.target, e.currentTarget);
+//   this.style.background = randomColor();
+// });
 
-document.querySelector('.nav').addEventListener('click', function(e) {
-  //   this === e.currentTarget
-  console.log('NAV', e.target, e.currentTarget);
-  this.style.background = randomColor();
-});
+// document.querySelector('.nav').addEventListener('click', function(e) {
+//   //   this === e.currentTarget
+//   console.log('NAV', e.target, e.currentTarget);
+//   this.style.background = randomColor();
+// });
+
+// Event Delegation - Smooth Page Navigation
+const navLinks = document.querySelectorAll('.nav__link');
+
+navLinks.forEach((link, i) =>
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    console.log(e);
+    console.log(e.target);
+    console.log(e.currentTarget);
+    const sections = document.querySelectorAll(`#section--${i + 1}`);
+    console.log(sections);
+    sections[0].scrollIntoView({ behavior: 'smooth' });
+  })
+);
