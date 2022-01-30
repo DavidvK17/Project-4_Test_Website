@@ -58,20 +58,20 @@ btnScrollTo.addEventListener('click', function(e) {
 });
 
 // Types of events and Event Handlers
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 
 // 1. addeventlistener allows us to add multiple event listeners to the same event
 // 2. allows us to remove an event handler we don't need anymore
-const logH1 = function(e) {
-  console.log(e);
-  console.log(e.target);
+// const logH1 = function(e) {
+//   console.log(e);
+//   console.log(e.target);
 
-  //   h1.removeEventListener('mouseenter', logH1);
-};
+//   //   h1.removeEventListener('mouseenter', logH1);
+// };
 
-h1.addEventListener('mouseenter', logH1);
+// h1.addEventListener('mouseenter', logH1);
 
-setTimeout(() => h1.removeEventListener('mouseenter', logH1), 3000);
+// setTimeout(() => h1.removeEventListener('mouseenter', logH1), 3000);
 
 // Generate random color rgb(255,255,255)
 const randomInt = (min, max) =>
@@ -106,6 +106,7 @@ console.log(randomColor());
 // 1. add eventlistener to common parent element
 document.querySelector('.nav__links').addEventListener('click', function(e) {
   e.preventDefault();
+  console.log(e.target);
   //   Matching strategy
   if (e.target.classList.contains('nav__link')) {
     const id = e.target.getAttribute('href');
@@ -130,3 +131,33 @@ document.querySelector('.nav__links').addEventListener('click', function(e) {
 //     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
 //   })
 // );
+
+// DOM Traversing - tabbed component
+
+const tabs = document.querySelectorAll('.operations__tab');
+console.log(tabs);
+const tabsContainer = document.querySelector('.operations__tab-container');
+console.log(tabsContainer);
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function(e) {
+  // closest operations tab, to solve problem of click on span
+  const clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
+  // ignore clicks on tabscontainer
+  // Guard Close
+  // null = falsy value
+  if (!clicked) return;
+
+  // remove active on all before adding to one
+  tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  // activate content area
+  tabsContent.forEach(content =>
+    content.classList.remove('operations__content--active')
+  );
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
