@@ -161,3 +161,45 @@ tabsContainer.addEventListener('click', function(e) {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
+// Intersection Observer API
+// entries array of thresholds
+const obsCallback = function(entries, observer) {
+  entries.forEach(entry => entry);
+};
+
+const obsOptions = {
+  // viewport
+  root: null,
+  // section1 intersecting viewport at 10%
+  threshold: [0, 0.2]
+};
+
+const observer = new IntersectionObserver(obsCallback, obsOptions);
+observer.observe(section1);
+
+// Lazy Loading images
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+const loadImg = function(entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  // Replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', function() {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px'
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
